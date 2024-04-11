@@ -5,7 +5,7 @@ function Button(props) {
 
   return (
     <div
-      className={`bg-[#${bgColor}] flex justify-center items-center py-2  w-[${width}%] rounded-lg cursor-pointer` }
+      className={`bg-[#${bgColor}] flex justify-center items-center py-2  w-[${width}%] rounded-lg cursor-pointer focus-within:bg-[#00A0A0] focus-within:text-[#2E7578]` }
     >
       <button
         className={`rounded-lg flex justify-center items-center font-bold text-[28px] text-[#${textColor}] w-full h-full`}

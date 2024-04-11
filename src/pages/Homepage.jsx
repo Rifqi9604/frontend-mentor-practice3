@@ -14,6 +14,13 @@ function Homepage() {
   const [foodBillTotal, setFoodBillTotal] = useState(0);
   const [customTipClicked, setCustomTipClicked] = useState(false);
   const [submit, setIsSubmit] = useState(false);
+  const [recount, setRecount] = useState(false);
+
+  const handleRecount = () => {
+    setRecount(!recount);
+    handleSubmit();
+    setIsSubmit(false);
+  };
 
   const handleReset = () => {
     setBillValue("");
@@ -31,24 +38,46 @@ function Homepage() {
   };
 
   const handleBillChange = (value) => {
+    if (!/^\d*\.?\d*$/.test(value)) {
+      alert("Bill value must be a number.");
+      return;
+    }
     setBillValue(value);
   };
 
   const handlePeopleChange = (value) => {
+    if (!/^\d*\.?\d*$/.test(value)) {
+      alert("Number of People must be a number.");
+      return;
+    }
     setNumberOfPeople(value);
   };
 
   const handleTipChange = (value) => {
+    if (!/^\d*\.?\d*$/.test(value)) {
+      alert("Tip percentage must be a number.");
+      return;
+    }
     setTip(value);
+    setCustomTipClicked(false);
   };
 
   const handleCustomTipChange = (value) => {
+    if (!/^\d*\.?\d*$/.test(value)) {
+      alert("Custom tip percentage must be a number.");
+      return;
+    }
     setCustomTip(value);
   };
 
   const handleSubmit = () => {
-    if (!billValue || !numberOfPeople || tip === 0) {
-      alert("Please fill all the fields.");
+    if (!billValue || isNaN(parseFloat(billValue))) {
+      alert("Bill value must be a valid number.");
+      return;
+    }
+
+    if (!numberOfPeople || isNaN(parseFloat(numberOfPeople))) {
+      alert("Number of People must be a valid number.");
       return;
     }
 
@@ -56,7 +85,7 @@ function Homepage() {
     let tipPercentage = tip; // Use predefined tip percentage by default
 
     // Check if custom tip is entered and valid
-    if (customTipClicked && customTip >= 0) {
+    if (customTipClicked && customTip >= 0 && !isNaN(parseFloat(customTip))) {
       tipPercentage = customTip; // Use custom tip percentage if available
     }
 
@@ -70,7 +99,7 @@ function Homepage() {
 
   return (
     <div className="h-screen overflow-visible relative md:mb-0 md:min-h-full">
-      <div className="flex flex-col h-[40%] bg-[#B4E3E8] justify-center items-center text-[#2E7578] font-bold text-[28px] mix-blend-overlay pb-6 md:h-screen md:pb-0 md:pt-6 md:justify-start ">
+      <div className="flex flex-col h-[40%] bg-[#B4E3E8] justify-center items-center text-[#2E7578] font-bold text-[28px] mix-blend-overlay pb-10 md:h-screen md:pb-0 md:pt-6 md:justify-start ">
         <p>S P L I</p>
         <p>T T E R</p>
       </div>
@@ -128,8 +157,7 @@ function Homepage() {
                 <Button
                   text="Custom"
                   width={50}
-                  bgColor="F2FAFC"
-                  textColor="2E7578"
+                  style="bg-[#2E7578] text-white"
                   onClick={handleTipClick}
                 />
               </div>
@@ -193,16 +221,26 @@ function Homepage() {
               </div>
             </div>
             <div>
-              {submit ? (
-                <Button
-                  text="Reset"
-                  bgColor="F2FAFC"
-                  textColor="2E7578"
-                  onClick={handleReset}
-                />
-              ) : (
-                <Button text="Count" onClick={handleSubmit} />
-              )}
+              <div>
+                {submit ? (
+                  <div className="flex flex-col gap-4">
+                    <Button
+                      text="Reset"
+                      bgColor="F2FAFC"
+                      textColor="2E7578"
+                      onClick={handleReset}
+                    />
+                    <Button
+                      text="Re-Count"
+                      bgColor="F2FAFC"
+                      textColor="2E7578"
+                      onClick={handleRecount}
+                    />
+                  </div>
+                ) : (
+                  <Button text="Count" onClick={handleSubmit} />
+                )}
+              </div>
             </div>
           </div>
         </div>
