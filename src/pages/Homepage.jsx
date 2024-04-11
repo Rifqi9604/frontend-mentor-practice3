@@ -14,8 +14,6 @@ function Homepage() {
   const [foodBillTotal, setFoodBillTotal] = useState(0);
   const [customTipClicked, setCustomTipClicked] = useState(false);
   const [submit, setIsSubmit] = useState(false);
-  const [buttonBgColor, setButtonBgColor] = useState("#2E7578");
-  const [buttonFocus, setButtonFocus] = useState(false);
 
   const handleReset = () => {
     setBillValue("");
@@ -26,7 +24,6 @@ function Homepage() {
     setFoodBillTotal(0);
     setCustomTipClicked(false);
     setIsSubmit(false);
-    setButtonBgColor("#2E7578"); // Reset button background color
   };
 
   const handleTipClick = () => {
@@ -43,21 +40,10 @@ function Homepage() {
 
   const handleTipChange = (value) => {
     setTip(value);
-    setButtonBgColor("#4CAF50"); // Change button background color on click
   };
 
   const handleCustomTipChange = (value) => {
     setCustomTip(value);
-  };
-
-  const handleButtonFocus = () => {
-    setButtonFocus(!buttonFocus);
-    setButtonBgColor("#FF9800"); // Change button background color on focus
-  };
-
-  const handleButtonBlur = () => {
-    setButtonFocus(false);
-    setButtonBgColor("#2E7578"); // Reset button background color on blur
   };
 
   const handleSubmit = () => {
@@ -107,48 +93,37 @@ function Homepage() {
                 <Button
                   text="5%"
                   width={50}
-                  style={{ backgroundColor: buttonBgColor, color: "white" }}
+                  style="bg-[#2E7578] text-white"
                   value={5}
                   onClick={() => handleTipChange(5)}
-                  onFocus={handleButtonFocus}
-                  onBlur={handleButtonBlur}
-                  tabIndex={0}
                 />
                 <Button
                   text="10%"
                   width={50}
-                  style={{ backgroundColor: buttonBgColor, color: "white" }}
+                  style="bg-[#2E7578] text-white"
                   value={10}
                   onClick={() => handleTipChange(10)}
-                  onFocus={handleButtonFocus}
-                  onBlur={handleButtonBlur}
                 />
                 <Button
                   text="15%"
                   width={50}
-                  style={{ backgroundColor: buttonBgColor, color: "white" }}
+                  style="bg-[#2E7578] text-white"
                   value={15}
                   onClick={() => handleTipChange(15)}
-                  onFocus={handleButtonFocus}
-                  onBlur={handleButtonBlur}
                 />
                 <Button
                   text="25%"
                   width={50}
-                  style={{ backgroundColor: buttonBgColor, color: "white" }}
+                  style="bg-[#2E7578] text-white"
                   value={25}
                   onClick={() => handleTipChange(25)}
-                  onFocus={handleButtonFocus}
-                  onBlur={handleButtonBlur}
                 />
                 <Button
                   text="50%"
                   width={50}
-                  style={{ backgroundColor: buttonBgColor, color: "white" }}
+                  style="bg-[#2E7578] text-white"
                   value={50}
                   onClick={() => handleTipChange(50)}
-                  onFocus={handleButtonFocus}
-                  onBlur={handleButtonBlur}
                 />
                 <Button
                   text="Custom"
